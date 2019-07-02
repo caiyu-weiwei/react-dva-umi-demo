@@ -23,6 +23,13 @@ const config: IConfig =  {
       },
     }],
   ],
+  proxy: {
+    '/api': {
+      'target': 'http://jsonplaceholder.typicode.com/',
+      'changeOrigin': true,
+      'pathRewrite': { '^/api' : '' }
+    }
+  }
 }
 
 export default config;
