@@ -1,15 +1,31 @@
 import { connect } from 'dva'
-import { Table, Button } from 'antd'
+import { Table, Divider, Button, Popconfirm } from 'antd'
 import usersStyle from './Users.css'
+import UserModal from './UserModal'
 const Users = ({ dispatch, list: dataSource, total, page, loading }) => {
   console.log('dataSource', dataSource)
+  const handleEdit = () => {}
+
+  const handleConfirm = (id) => {
+    console.log('handleConfirm', id)
+  }
+
+  const handleCancel = () => {}
+
+  const handleCreate = values => {
+    dispatch({
+      type: 'users/create',
+      payload: values
+    })
+  }
+
   const columns = [
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
       align: 'center',
-      render: text => <a>{ text }</a>
+      render: text => <a href="#">{ text }</a>
     },
     {
       title: 'Email',
@@ -30,7 +46,16 @@ const Users = ({ dispatch, list: dataSource, total, page, loading }) => {
       render: (text, record) => (
         <span>
           <a>Edit</a>
-          <a>Delete</a>
+          <Divider type="vertical" />
+          <Popconfirm
+            title="是否确认删除该用户?"
+            onConfirm={handleConfirm(record)}
+            onCancel={handleCancel}
+            okText="确认"
+            cancelText="取消"
+          >
+            <a>Delete</a>
+          </Popconfirm>
         </span>
       )
     }
@@ -39,10 +64,13 @@ const Users = ({ dispatch, list: dataSource, total, page, loading }) => {
   return (
     <div className={usersStyle.wrapper}>
       <div className={usersStyle.create}>
-        <Button type="primary">Create User</Button>
+        <UserModal onOk ={handleCreate}>
+          <Button type="primary">Create User</Button>
+        </UserModal>
       </div>
       <Table
         bordered
+        loading={loading}
         columns={columns}
         dataSource={dataSource}
         rowKey={record => record.id}

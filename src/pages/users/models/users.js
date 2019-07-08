@@ -26,6 +26,17 @@ export default {
           page
         }
       })
+    },
+
+    *create({ payload: values }, { put, call, select }) {
+      const { data } = yield call(usersServices.create, values)
+      // const res = yield call(usersServices.create, values)
+      console.log('create', data)
+      const page = select(state => state.users.page)
+      yield put({
+        type: 'fetch',
+        payload: { page }
+      })
     }
   },
 
