@@ -47,7 +47,7 @@ class UserModal extends Component{
     const { name, email, website } = this.props.record
 
     return (
-      <div>
+      <span>
         <span onClick={this.handleShowModal}>
           { children }
         </span>
@@ -108,7 +108,7 @@ class UserModal extends Component{
             </Form.Item>
           </Form>
         </Modal>
-      </div>
+      </span>
     )
   }
 }
