@@ -44,6 +44,7 @@ class UserModal extends Component{
       labelCol: { span: 4 },
       wrapperCol: { span: 12 }
     }
+    const { name, email, website } = this.props.record
 
     return (
       <div>
@@ -70,6 +71,7 @@ class UserModal extends Component{
                     message: '请输入名称',
                   },
                 ],
+                initialValue: name
               })(<Input placeholder="请输入名称" />)}
             </Form.Item>
             <Form.Item
@@ -87,6 +89,7 @@ class UserModal extends Component{
                     message: '请输入邮箱地址',
                   }
                 ],
+                initialValue: email
               })(<Input placeholder="请输入邮箱地址" />)}
             </Form.Item>
             <Form.Item
@@ -100,6 +103,7 @@ class UserModal extends Component{
                     message: '请输入网址',
                   }
                 ],
+                initialValue: website
               })(<Input placeholder="请输入网址" />)}
             </Form.Item>
           </Form>

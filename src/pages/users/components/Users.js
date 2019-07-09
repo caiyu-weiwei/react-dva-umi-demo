@@ -4,7 +4,6 @@ import usersStyle from './Users.css'
 import UserModal from './UserModal'
 const Users = ({ dispatch, list: dataSource, total, page, loading }) => {
   console.log('dataSource', dataSource)
-  const handleEdit = () => {}
 
   const handleConfirm = (id) => {
     console.log('handleConfirm', id)
@@ -13,9 +12,21 @@ const Users = ({ dispatch, list: dataSource, total, page, loading }) => {
   const handleCancel = () => {}
 
   const handleCreate = values => {
+    console.log('handleCreate values', values)
     dispatch({
       type: 'users/create',
       payload: values
+    })
+  }
+
+  const handleEdit = (id, values) => {
+    console.log('handleEdit')
+    dispatch({
+      type: 'users/patch',
+      payload: {
+        id,
+        values
+      }
     })
   }
 
@@ -45,7 +56,9 @@ const Users = ({ dispatch, list: dataSource, total, page, loading }) => {
       align: 'center',
       render: (text, record) => (
         <span>
-          <a>Edit</a>
+          <UserModal record={record} onOk={handleEdit.bind(null, record.id)}>
+            <a>Edit</a>
+          </UserModal>
           <Divider type="vertical" />
           <Popconfirm
             title="是否确认删除该用户?"
@@ -64,7 +77,7 @@ const Users = ({ dispatch, list: dataSource, total, page, loading }) => {
   return (
     <div className={usersStyle.wrapper}>
       <div className={usersStyle.create}>
-        <UserModal onOk ={handleCreate}>
+        <UserModal record={{}}  onOk ={handleCreate}>
           <Button type="primary">Create User</Button>
         </UserModal>
       </div>

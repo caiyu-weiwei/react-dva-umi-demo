@@ -37,6 +37,15 @@ export default {
         type: 'fetch',
         payload: { page }
       })
+    },
+
+    *patch({ payload: {id, values} }, {put, call, select}) {
+      yield call(usersServices.patch, id, values)
+      const page = select(state => state.users.page)
+      yield put({
+        type: 'fetch',
+        payload: { page }
+      })
     }
   },
 
