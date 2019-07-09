@@ -7,6 +7,10 @@ const Users = ({ dispatch, list: dataSource, total, page, loading }) => {
 
   const handleConfirm = (id) => {
     console.log('handleConfirm', id)
+    dispatch({
+      type: 'users/remove',
+      payload: { id }
+    })
   }
 
   const handleCancel = () => {}
@@ -62,7 +66,7 @@ const Users = ({ dispatch, list: dataSource, total, page, loading }) => {
           <Divider type="vertical" />
           <Popconfirm
             title="是否确认删除该用户?"
-            onConfirm={handleConfirm(record)}
+            onConfirm={handleConfirm(record.id)}
             onCancel={handleCancel}
             okText="确认"
             cancelText="取消"

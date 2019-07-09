@@ -15,7 +15,7 @@ export default {
   },
 
   effects: {
-    *fetch({ page=1 }, { call, put }) {
+    *fetch({ payload: { page=1 } }, { call, put }) {
       const { data, headers } = yield call(usersServices.fetch, { page })
       console.log('fetch', data)
       yield put({
@@ -41,6 +41,15 @@ export default {
 
     *patch({ payload: {id, values} }, {put, call, select}) {
       yield call(usersServices.patch, id, values)
+      const page = select(state => state.users.page)
+      yield put({
+        type: 'fetch',
+        payload: { page }
+      })
+    },
+
+    *remove({ payload: { id } }, { put, call, select }) {
+      yield call(usersServices.remove, id)
       const page = select(state => state.users.page)
       yield put({
         type: 'fetch',
