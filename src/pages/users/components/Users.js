@@ -59,14 +59,14 @@ const Users = ({ dispatch, list: dataSource, total, page, loading }) => {
       key: 'operation',
       align: 'center',
       render: (text, record) => (
-        <span>
+        <span className={usersStyle.operation}>
           <UserModal record={record} onOk={handleEdit.bind(null, record.id)}>
             <a>Edit</a>
           </UserModal>
           <Divider type="vertical" />
           <Popconfirm
             title="是否确认删除该用户?"
-            onConfirm={handleConfirm}
+            onConfirm={handleConfirm.bind(null, record.id)}
             onCancel={handleCancel}
             okText="确认"
             cancelText="取消"
