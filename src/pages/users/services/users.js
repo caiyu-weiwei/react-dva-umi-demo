@@ -22,3 +22,9 @@ export function patch(id, values) {
     body: JSON.stringify(values)
   })
 }
+
+export function remove(id) {
+  return request(`/api/users/${id}`, {
+    method: 'DELETE'
+  })
+}
