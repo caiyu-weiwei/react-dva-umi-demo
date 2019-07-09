@@ -29,9 +29,7 @@ export default {
     },
 
     *create({ payload: values }, { put, call, select }) {
-      const { data } = yield call(usersServices.create, values)
-      // const res = yield call(usersServices.create, values)
-      console.log('create', data)
+      yield call(usersServices.create, values)
       const page = select(state => state.users.page)
       yield put({
         type: 'fetch',
@@ -48,7 +46,7 @@ export default {
       })
     },
 
-    *remove({ payload: { id } }, { put, call, select }) {
+    *remove({ payload: id }, { put, call, select }) {
       yield call(usersServices.remove, id)
       const page = select(state => state.users.page)
       yield put({

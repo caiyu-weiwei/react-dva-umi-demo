@@ -9,7 +9,7 @@ const Users = ({ dispatch, list: dataSource, total, page, loading }) => {
     console.log('handleConfirm', id)
     dispatch({
       type: 'users/remove',
-      payload: { id }
+      payload: id
     })
   }
 
@@ -66,7 +66,7 @@ const Users = ({ dispatch, list: dataSource, total, page, loading }) => {
           <Divider type="vertical" />
           <Popconfirm
             title="是否确认删除该用户?"
-            onConfirm={handleConfirm(record.id)}
+            onConfirm={handleConfirm}
             onCancel={handleCancel}
             okText="确认"
             cancelText="取消"
@@ -98,7 +98,6 @@ const Users = ({ dispatch, list: dataSource, total, page, loading }) => {
 }
 
 const mapStateToProps = (state) => {
-  console.log('mapStateToProps state', state)
   const { list, total, page } = state.users
   return { list, total, page }
 }

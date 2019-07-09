@@ -23,6 +23,8 @@ export function patch(id, values) {
   })
 }
 
+
+// 删除用户
 export function remove(id) {
   return request(`/api/users/${id}`, {
     method: 'DELETE'
