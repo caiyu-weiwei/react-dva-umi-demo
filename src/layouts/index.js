@@ -1,12 +1,17 @@
-import styles from './index.css';
+import React from 'react'
+import withRouter from 'umi/withRouter'
+import Header from './Header'
+import styles from './index.css'
 
-function BasicLayout(props) {
+const BasicLayout = ({ children, location }) => {
   return (
     <div className={styles.normal}>
-      <h1 className={styles.title}>Yay! Welcome to umi!</h1>
-      {props.children}
+      <Header location={location}/>
+      <div>
+        { children }
+      </div>
     </div>
-  );
+  )
 }
 
-export default BasicLayout;
+export default withRouter(BasicLayout)
