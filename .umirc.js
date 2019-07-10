@@ -30,5 +30,17 @@ export default {
         '^/api': ''
       }
     }
-  }
+  },
+
+  // 配置式路由
+  // routes: [
+  //   {
+  //     path: './index',
+  //     component: ''
+  //   },
+  //   {
+  //     path: '/users',
+  //     component: './users'
+  //   }
+  // ]
 }

@@ -1,0 +1,7 @@
+.picture{
+  height: 500px;
+  background: url(../assets/404_1.jpg) no-repeat center 0;
+  /* background: url(../assets/404.gif) no-repeat center 0; */
+  /* background-size: 388px 328px; */
+  margin-top: 20px;
+}
