@@ -98,8 +98,9 @@ const Users = ({ dispatch, list: dataSource, total, page, loading }) => {
 }
 
 const mapStateToProps = (state) => {
+  console.log('mapStateToProps state', state)
   const { list, total, page } = state.users
-  return { list, total, page }
+  return { list, total, page, loading: state.loading.models.users }
 }
 
 export default connect(mapStateToProps)(Users)
